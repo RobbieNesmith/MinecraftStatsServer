@@ -21,14 +21,15 @@ def get_stats():
   player_stats = {}
   for filename in player_files:
     player_uuid = os.path.splitext(filename)[0]
+    stats = {}
     with open(os.path.join(stats_path, filename)) as stats_file:
       stats = json.load(stats_file)
-      if player_uuid in player_infos:
-        stats["info"] = player_infos[player_uuid]
-      else:
-        info_response = requests.get(f"https://playerdb.co/api/player/minecraft/{player_uuid}")
-        info_json = info_response.json()
-        stats["info"] = info_json
-        player_infos[player_uuid] = info_json
-      player_stats[player_uuid] = stats
+    if player_uuid in player_infos:
+      stats["info"] = player_infos[player_uuid]
+    else:
+      info_response = requests.get(f"https://playerdb.co/api/player/minecraft/{player_uuid}")
+      info_json = info_response.json()
+      stats["info"] = info_json
+      player_infos[player_uuid] = info_json
+    player_stats[player_uuid] = stats
   return jsonify(player_stats)
