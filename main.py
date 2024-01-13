@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, render_template
 from dotenv import load_dotenv
 import json
+import requests
 import os
 
 load_dotenv()
@@ -17,7 +18,10 @@ def get_stats():
   player_files = os.listdir(stats_path)
   player_stats = {}
   for filename in player_files:
+    player_uuid = os.path.splitext(filename)[0]
     with open(os.path.join(stats_path, filename)) as stats_file:
       stats = json.load(stats_file)
-      player_stats[os.path.splitext(filename)[0]] = stats
+      info_response = requests.get(f"https://playerdb.co/api/player/minecraft/{player_uuid}")
+      stats["info"] = info_response.json()
+      player_stats[player_uuid] = stats
   return jsonify(player_stats)

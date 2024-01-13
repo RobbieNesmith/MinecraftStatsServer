@@ -283,7 +283,7 @@ class PlayerDisplayer extends React.Component {
           </a>
         </ChildTag>
         <ChildTag className="playerName">
-          {this.props.stats["name"]}
+          {this.props.stats.info.data.player.username}
         </ChildTag>
         <ChildTag className="playerScore">
           {score}
