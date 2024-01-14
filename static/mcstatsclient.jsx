@@ -40,7 +40,6 @@ class Sidebar extends React.Component {
     return (
       <div className="sidebar">
         <SidebarButton text="Leaderboards" />
-        <SidebarButton text="Player Info" />
       </div>
     );
   }
