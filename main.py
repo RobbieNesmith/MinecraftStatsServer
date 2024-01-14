@@ -1,3 +1,4 @@
+import argparse
 from flask import Flask, jsonify, render_template
 from dotenv import load_dotenv
 import json
@@ -5,7 +6,14 @@ import requests
 import os
 from waitress import serve
 
-load_dotenv()
+parser = argparse.ArgumentParser(prog="Minecraft Stats Server", description="A web server for displaying in game stats for a Minecraft server")
+parser.add_argument("-e", "--env", default=".env", help="Which environment file to use for configuration. See .env.template for details.")
+parser.add_argument("-w", "--webhost", default="*", help="What web interface to serve on, leave off for all.")
+parser.add_argument("-p", "--port", type=int, default=5000, help="What port to serve on. Leave off for 5000")
+
+args = parser.parse_args()
+
+load_dotenv(args.env)
 
 player_infos = {}
 
@@ -35,4 +43,5 @@ def get_stats():
     player_stats[player_uuid] = stats
   return jsonify(player_stats)
 
-serve(app, listen="*:5000")
+print(f"Serving on {args.webhost}:{args.port}")
+serve(app, listen=f"{args.webhost}:{args.port}")
