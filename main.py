@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import json
 import requests
 import os
+from waitress import serve
 
 load_dotenv()
 
@@ -33,3 +34,5 @@ def get_stats():
       player_infos[player_uuid] = info_json
     player_stats[player_uuid] = stats
   return jsonify(player_stats)
+
+serve(app, listen="*:5000")
