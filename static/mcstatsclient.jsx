@@ -127,7 +127,7 @@ class SearchableDropdown extends React.Component {
       <div className="searchableDropdown">
         {unfocusCatcher}
         <input
-          placeholder="Filter..."
+          placeholder="Type to Filter..."
           className={searchbarClass}
           value={dispText}
           onClick={() => {
