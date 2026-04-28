@@ -275,10 +275,10 @@ class PlayerDisplayer extends React.Component {
         {rank}
         <ChildTag className="playerFaceContainer">
           <a href={`https://namemc.com/profile/${this.props.uuid}`}>
-            <img className="playerFace" src={`https://crafatar.com/avatars/${this.props.uuid}?overlay&size=${imgSize}`} />
-            <img className="hidden" src={`https://crafatar.com/avatars/${this.props.uuid}?overlay&size=${32}`} />
-            <img className="hidden" src={`https://crafatar.com/avatars/${this.props.uuid}?overlay&size=${64}`} />
-            <img className="hidden" src={`https://crafatar.com/avatars/${this.props.uuid}?overlay&size=${128}`} />
+            <img className="playerFace" src={`https://mc-heads.net/avatar/${this.props.uuid}/${imgSize}`} />
+            <img className="hidden" src={`https://mc-heads.net/avatar/${this.props.uuid}/32`} />
+            <img className="hidden" src={`https://mc-heads.net/avatar/${this.props.uuid}/64`} />
+            <img className="hidden" src={`https://mc-heads.net/avatar/${this.props.uuid}/128`} />
           </a>
         </ChildTag>
         <ChildTag className="playerName">
