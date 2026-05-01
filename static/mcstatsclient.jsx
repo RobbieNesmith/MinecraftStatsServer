@@ -132,7 +132,7 @@ class SearchableDropdown extends React.Component {
           value={dispText}
           onClick={() => {
             if (!this.state.open) {
-              this.setState({ open: true, filter: "" });
+              this.setState({ open: true });
             }
           }}
           onChange={(evt) => this.setState({ filter: evt.target.value })}
