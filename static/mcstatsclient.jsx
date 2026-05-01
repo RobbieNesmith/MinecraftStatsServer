@@ -119,7 +119,7 @@ class SearchableDropdown extends React.Component {
       unfocusCatcher = <div className="unfocusCatcher" onClick={() => this.setState({ open: false })}></div>;
       dispText = this.state.filter;
       dropdownMenu = <ul className="dropdownList">
-        {this.props.options.filter(op => op.toLowerCase().includes(this.state.filter.toLowerCase())).map(option => <li onClick={() => this.setState({ option, open: false }, this.props.onChange(option))}>{option}</li>)}
+        {this.props.options.filter(op => op.toLowerCase().includes(this.state.filter.toLowerCase())).map(option => <li key={option} onClick={() => this.setState({ option, open: false }, this.props.onChange(option))}>{option}</li>)}
       </ul>;
       searchbarClass = "dropdownSearcher dropdownSearcherActive";
     }
@@ -235,7 +235,7 @@ class Leaderboard extends React.Component {
             <table className="leaderboardPlayerList">
               <tbody>
                 {orderedPlayers.map((player, i) => {
-                  return <PlayerDisplayer stats={this.props.stats[player]} uuid={player} category={this.props.category} item={this.props.item} rank={i} />;
+                  return <PlayerDisplayer key={player} stats={this.props.stats[player]} uuid={player} category={this.props.category} item={this.props.item} rank={i} />;
                 })}
               </tbody>
             </table>
