@@ -166,7 +166,22 @@ class LeaderboardSelector extends React.Component {
         }
       }
     }
-    this.setState({ categories: categories });
+
+    let queryParams = new URLSearchParams(location.search);
+    let category = queryParams.get("category");
+    let item = queryParams.get("item");
+
+    if (!category) {
+      item = "";
+    }
+
+    if (!(category in categories)) {
+      console.log("category not included");
+      category = "";
+      item = "";
+    }
+
+    this.setState({ categories: categories, category: category, item: item });
   }
 
   render() {
