@@ -154,10 +154,12 @@ class LeaderboardSelector extends React.Component {
 
   updateCategory(newCategory) {
     this.setState({category: newCategory, item: ""});
+    history.replaceState({}, "", `?category=${newCategory}`);
   }
 
   updateItem(newItem) {
     this.setState({item: newItem});
+    history.replaceState({}, "", `?category=${this.state.category}&item=${newItem}`);
   }
 
   componentDidMount() {
