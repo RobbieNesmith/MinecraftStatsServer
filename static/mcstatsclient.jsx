@@ -148,6 +148,16 @@ class LeaderboardSelector extends React.Component {
     super(props);
 
     this.state = { categories: {}, category: "", item: "" };
+    this.updateCategory = this.updateCategory.bind(this);
+    this.updateItem = this.updateItem.bind(this);
+  }
+
+  updateCategory(newCategory) {
+    this.setState({category: newCategory, item: ""});
+  }
+
+  updateItem(newItem) {
+    this.setState({item: newItem});
   }
 
   componentDidMount() {
@@ -193,9 +203,9 @@ class LeaderboardSelector extends React.Component {
       <div>
         <div className="selections">
           <span>Select a Category: </span>
-          <SearchableDropdown selectionMessage="Select a Category" value={this.state.category} onChange={(c) => this.setState({ category: c, item: "" })} options={Object.keys(this.state.categories)} />
+          <SearchableDropdown selectionMessage="Select a Category" value={this.state.category} onChange={this.updateCategory} options={Object.keys(this.state.categories)} />
           <span>Select an Item: </span>
-          <SearchableDropdown selectionMessage="Select an Item" value={this.state.item} onChange={(i) => this.setState({ item: i })} options={items} />
+          <SearchableDropdown selectionMessage="Select an Item" value={this.state.item} onChange={this.updateItem} options={items} />
         </div>
         <div>
           <Leaderboard stats={this.props.stats} category={this.state.category} item={this.state.item} />
